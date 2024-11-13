@@ -12,13 +12,14 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Initialize components.
         vcam = brain.ActiveVirtualCamera as CinemachineVirtualCamera;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Disable and reenable assigned virtual camera
+        // Disable and reenable main virtual camera when pressing c.
         if(Input.GetKeyDown("c"))
         {
             if (vcam.enabled)

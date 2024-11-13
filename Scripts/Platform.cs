@@ -14,9 +14,11 @@ public class Platform : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        // Initialize arrays for torches and hazards
         torchesObjects = GameObject.FindGameObjectsWithTag("PowerUp");
         blocksObjects = GameObject.FindGameObjectsWithTag("Hazard");
 
+        // Deactivate torches
         foreach (GameObject torch in torchesObjects)
         {
             torch.SetActive(false);
@@ -28,11 +30,13 @@ public class Platform : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+        // On collision with a player, reenable the torches.
         foreach (GameObject torch in torchesObjects)
             {
                 torch.SetActive(true);
             }
 
+        // And disable the hazard blocks.
         foreach (GameObject block in blocksObjects)
             {
                 block.SetActive(false);

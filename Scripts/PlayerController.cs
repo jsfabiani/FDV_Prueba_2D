@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour
             
         if (collision.gameObject.tag == "Floor")
         {          
-            // Recharge Jumping and Double Jump upon touching a floor.
+            // Recharge Jumping upon touching a floor.
             isJumping = false;
             rb2D.velocity = new Vector2(rb2D.velocity.x, 0);
 
@@ -112,6 +112,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("isJumping", false);
         }
 
+        // Remove life upon collision with a hazard
         if (collision.gameObject.CompareTag("Hazard"))
         {
             life -= 10f;
@@ -127,6 +128,7 @@ public class PlayerController : MonoBehaviour
             
         }
 
+        // End the game upon touching the treasure.
         if (collision.gameObject.CompareTag("Treasure"))
         {
             Debug.Log("End Game");
@@ -134,6 +136,7 @@ public class PlayerController : MonoBehaviour
             UnityEditor.EditorApplication.isPlaying = false;
         }
 
+        // Restore life upon touching the platform.
         if (collision.gameObject.CompareTag("Platform"))
         {
             life = 100f;
@@ -166,6 +169,7 @@ public class PlayerController : MonoBehaviour
     {
         if (trigger.gameObject.CompareTag("Enemy"))
         {
+            // When the attack trigger is on an enemy and the attack key is pressed, destroy the enemy.
             if(attackInput)
             {
                 Destroy(trigger.gameObject);
